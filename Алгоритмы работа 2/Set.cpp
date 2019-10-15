@@ -1,4 +1,4 @@
-#include "Set.h"
+ï»¿#include "Set.h"
 #include <iostream>
 
 using namespace std;
@@ -28,10 +28,10 @@ void Set::arrtolist(int *c) {
 	int i = 0;
 	list* A = new list;
 	A->head = A;
-	do {							//çàïîëíÿåì ñïèñîê èç ìàññèâà
+	do {							//Ð·Ð°Ð¿Ð¾Ð»Ð½ÑÐµÐ¼ ÑÐ¿Ð¸ÑÐ¾Ðº Ð¸Ð· Ð¼Ð°ÑÑÐ¸Ð²Ð°
 		A->symbol = c[i];
 		i++;
-		if (i != n) { //ïðè ïîñëåäíåì çàõîäå ìû òàêèì îáðàçîì íå ñîçäàäèì ëèøíèé ýëåìåíò
+		if (i != n) { //Ð¿Ñ€Ð¸ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÐµÐ¼ Ð·Ð°Ñ…Ð¾Ð´Ðµ Ð¼Ñ‹ Ñ‚Ð°ÐºÐ¸Ð¼ Ð¾Ð±Ñ€Ð°Ð·Ð¾Ð¼ Ð½Ðµ ÑÐ¾Ð·Ð´Ð°Ð´Ð¸Ð¼ Ð»Ð¸ÑˆÐ½Ð¸Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚
 			A->next = new list;
 			A->next->head = A->head;
 			A = A->next;
@@ -42,5 +42,5 @@ void Set::arrtolist(int *c) {
 }
 
 void Set::show() {
-	cout << "Ìîùüíîñòü ìíîæåñòâà";
+	cout << "ÐœÐ¾Ñ‰ÑŒÐ½Ð¾ÑÑ‚ÑŒ Ð¼Ð½Ð¾Ð¶ÐµÑÑ‚Ð²Ð°";
 }

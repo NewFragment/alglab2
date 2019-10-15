@@ -1,11 +1,8 @@
-#pragma once
-
-
-using namespace std;
+п»ї#pragma once
 
 class Set {
 
-	struct list //множество
+	struct list //РјРЅРѕР¶РµСЃС‚РІРѕ
 	{
 		int symbol;
 		list* next;
@@ -13,11 +10,10 @@ class Set {
 	};
 
 private:
-
-	static int N; //Мощьность универсума(16)
-	int n; //Мощность множества
-	list *spisok; //множество в виде списка
-	int *A; //универсум множества
+	static int N; //РњРѕС‰СЊРЅРѕСЃС‚СЊ СѓРЅРёРІРµСЂСЃСѓРјР°(16)
+	int n; //РњРѕС‰РЅРѕСЃС‚СЊ РјРЅРѕР¶РµСЃС‚РІР°
+	list *spisok; //РјРЅРѕР¶РµСЃС‚РІРѕ РІ РІРёРґРµ СЃРїРёСЃРєР°
+	int *A; //СѓРЅРёРІРµСЂСЃСѓРј РјРЅРѕР¶РµСЃС‚РІР°
 
 public:
 	void input();
