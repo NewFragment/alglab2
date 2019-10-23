@@ -2,26 +2,19 @@
 
 class Set {
 private:
-	struct list //множество
-	{
-		int symbol;
-		list* next;
-		list* head;
-	};
 	char S; //Тут будем различать какое у нас множество
 	static int N; //Мощность универсума(для всех 16)
 	int n; //Мощность множества
-	
 	int *A; //множество в виде массива
-
+	int* univ; //отображение на универсум множества
 public:
-	list *spisok; //множество в виде списка
-	Set(char f);
-	list* check(list*A, list*B, list*C, list*D);
-	int* check_01(list* first, list* second, bool c);
-	int* check_02(int* a, int b, int c);
+	Set(char f); //конструктор класса
+	Set operator &= (const Set & B) const;
+	Set operator |= (const Set & B) const;
+	Set operator & (const Set & B) const;
+	Set operator | (const Set & B) const;
+	Set operator ~() const;
+	Set(const Set&);
 	void input();
-	void arrtolist(int *c, int b);
-	void show();
-	~Set();
+	~Set(); //деструктор класса
 };

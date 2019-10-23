@@ -5,6 +5,8 @@
 
 using namespace std;
 
+int Set::N = 16;
+
 int main()
 {
 	srand(time(nullptr)); //очистка псевдорандома, чтобы при каждой компиляции выдавало разный рандом
@@ -14,7 +16,7 @@ int main()
 	float t;
 	start = clock(); //старт счётчика времени
 
-	E.check(A.spisok, B.spisok, C.spisok, D.spisok);
+	E = ((A | C) & (~(B | D)));
 	end = clock(); //конец счётчика времени
 	t = end - start; //рассчёт точного времени в секундах
 	cout << "Затраченное время на вычисление: " << t / CLOCKS_PER_SEC << " секунд" << endl;
