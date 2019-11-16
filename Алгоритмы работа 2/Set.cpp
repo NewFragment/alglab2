@@ -1,78 +1,112 @@
 ﻿#include "Set.h"
 #include <iostream>
 
-using namespace std;
+Set::Set(): //Конструктор для E
+	Arr(NULL), Name('E')
+{ 
 
-Set::Set(char f) : //Конструктор класса
-	S(f) 
+}
+
+Set::Set(char name) : //основной Конструктор
+	Name(name), Arr(NULL)
 {
-	if (S != 'E') {
-		A = NULL;
-		input();
+		Arr = NULL;
+		initialize();
+		printToConsole();
+}
+
+Set::Set(const Set &B): //Конструктор копии
+	Arr(NULL), n(B.n), Name('E')
+{
+	UniversumDisplay = new int[N];
+	for (int i = 0; i < N; i++)
+		UniversumDisplay[i] = B.UniversumDisplay[i];
+}
+
+Set Set::operator & (const Set &B) const {
+	for (int i = 0; i < N; i++)
+		if (UniversumDisplay[i] == 1 && B.UniversumDisplay[i] == 1)
+			UniversumDisplay[i] = 1;
+		else
+			UniversumDisplay[i] = 0;
+
+	return *this;
+}
+
+Set Set::operator &= (const Set &B) const {
+	Set C(*this);
+	return (C & B);
+}
+
+Set Set::operator | (const Set &B) const {
+	for (int i = 0; i < N; i++)
+		if(B.UniversumDisplay[i] == 1)
+		UniversumDisplay[i] = 1;
+	
+	return *this;
+}
+
+Set Set::operator |= (const Set &B) const {
+	Set C(*this);
+	return (C | B);
+}
+
+Set Set::operator ~() const {
+	for (int i = 0; i < N; i++)
+		if (this->UniversumDisplay[i] == 0) this->UniversumDisplay[i] = 1;
+		else this->UniversumDisplay[i] = 0;
+	return *this;
+}
+
+void Set::initialize() {
+	n = rand() % 16;
+	if (n == 0) {
+		this->UniversumDisplay = new int[N];
+		for (int i = 0; i < N; i++)
+			UniversumDisplay[i] = 0;
+		Arr = NULL;
 	}
 	else {
-		A = NULL;
-		univ = new int[N];
+		Arr = new int[n];
+		for (int i = 0; i <= this->n; ++i)
+			this->Arr[i] = rand() % 16;
+		this->UniversumDisplay = new int[N];
 		for (int i = 0; i < N; i++)
-			univ[i] = 0;
+			UniversumDisplay[i] = 0;
+		for (int i = 0; i < n; i++)
+			UniversumDisplay[Arr[i]] = 1;
 	}
 }
 
-Set::Set(const Set&set) :
-	S(set.S), n(set.n), A(set.A), univ(set.univ)
-{
-	
-}
+void Set::printToConsole() const {
+	if (Name != 'E') {
+		cout << Name << ": [";
+		for (int i = 0; i < n; ++i)
+			if (Name == 'E')
+				cout << hex << i << ";";
+			else
+				cout << hex << Arr[i] << ";";
 
+		cout << "] ";
 
-Set Set::operator &= (const Set & B) const {
-	Set C(*this);
-	int b = 0;
-	for(int i = 0; i < C.n; i++)
-		for(int j = 0; j < B.n; j++)
-			if (C.A[i] == B.A[j]) {
-				univ[C.A[i]] = 1;
-			}
-	return *this;
-}
+		for (int i = 0; i < N; ++i)
+			cout << UniversumDisplay[i];
+		cout << endl;
+	}
+	else {
+		cout << Name << ": [";
+		for (int i = 0; i < N; ++i)
+			if (UniversumDisplay[i] == 1)
+				cout << hex << i << ";";
 
-Set Set::operator & (const Set & B) const {
-	Set C(*this);
-	return(C &= B);
-}
+		cout << "] ";
 
-Set Set::operator |= (const Set & B) const {
-	Set C(*this);
-	for (int i = 0; i < this->n; i++)
-		for (int j = 0; j < B.n; j++) {
-			C.univ[A[i]] = 1;
-			C.univ[B.A[j]] = 1;
-		}
-	return *this;
-}
-Set Set::operator | (const Set & B) const {
-	Set C(*this);
-	return(C |= B);
-}
-Set Set::operator ~() const {
-	Set C('E');
-	for (int i = 0; i < N; i++)
-		if (univ[i] == 0) univ[i] = 1;
-		else univ[i] = 0;
-	return (*this);
-}
-
-void Set::input() {
-	n = rand() % 16;
-	A = new int[n];
-	for (int i = 0; i <= n; ++i)
-		A[i] = rand() % 16;
-
-	univ = new int[N];
-	for (int i = 0; i < N; i++)
-		univ[i] = 0;
+		for (int i = 0; i < N; ++i)
+			cout << UniversumDisplay[i];
+			cout << endl;
+	}
 }
 
 Set::~Set() { //Деструктор класса
-	cout << "Память очищенна!";
+
 }
