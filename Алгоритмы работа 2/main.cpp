@@ -13,11 +13,11 @@ int main()
 	Set A{ 'A' }, B{ 'B' }, C{ 'C' }, D{ 'D' }, E;
 	clock_t start, end;
 	float t;
-
+	//cout << "E = (A|C) & (~(B & D))"<< endl;
 	start = clock(); //старт счётчика времени
 	
-	for(int i = 0; i < 100000; i++)
-	E = ((A|=C) &= (~(B &= D)));
+	//for(int i = 0; i < 10000; ++i)
+	E = (A | C) & (~(B & D));
 	E.printToConsole();
 
 	end = clock(); //конец счётчика времени

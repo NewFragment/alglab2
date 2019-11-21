@@ -21,9 +21,10 @@ Set::Set(const Set &B): //Конструктор копии
 	UniversumDisplay = new int[N];
 	for (int i = 0; i < N; i++)
 		UniversumDisplay[i] = B.UniversumDisplay[i];
+	//cout << "Созданна копия " << B.Name << endl;
 }
 
-Set Set::operator & (const Set &B) const {
+Set Set::operator &= (const Set &B) const {
 	for (int i = 0; i < N; i++)
 		if (UniversumDisplay[i] == 1 && B.UniversumDisplay[i] == 1)
 			UniversumDisplay[i] = 1;
@@ -33,12 +34,13 @@ Set Set::operator & (const Set &B) const {
 	return *this;
 }
 
-Set Set::operator &= (const Set &B) const {
+Set Set::operator & (const Set &B) const {
 	Set C(*this);
-	return (C & B);
+	//cout << "Применен оператор & для " << this->Name << " & " << B.Name << " = E" << endl;
+	return (C &= B);
 }
 
-Set Set::operator | (const Set &B) const {
+Set Set::operator |= (const Set &B) const {
 	for (int i = 0; i < N; i++)
 		if(B.UniversumDisplay[i] == 1)
 		UniversumDisplay[i] = 1;
@@ -46,36 +48,31 @@ Set Set::operator | (const Set &B) const {
 	return *this;
 }
 
-Set Set::operator |= (const Set &B) const {
+Set Set::operator | (const Set &B) const {
 	Set C(*this);
-	return (C | B);
+	//cout << "Применен оператор | для " << this->Name << " | " << B.Name << " = E" << endl;
+	return (C |= B);
 }
 
 Set Set::operator ~() const {
 	for (int i = 0; i < N; i++)
 		if (this->UniversumDisplay[i] == 0) this->UniversumDisplay[i] = 1;
 		else this->UniversumDisplay[i] = 0;
+	//cout << "Применен оператор ~ для " << this->Name << endl;
 	return *this;
 }
 
 void Set::initialize() {
 	n = rand() % 16;
-	if (n == 0) {
-		this->UniversumDisplay = new int[N];
-		for (int i = 0; i < N; i++)
-			UniversumDisplay[i] = 0;
-		Arr = NULL;
-	}
-	else {
 		Arr = new int[n];
-		for (int i = 0; i <= this->n; ++i)
-			this->Arr[i] = rand() % 16;
-		this->UniversumDisplay = new int[N];
+		for (int i = 0; i <= n; ++i)
+			Arr[i] = rand() % 16;
+			UniversumDisplay = new int[N];
 		for (int i = 0; i < N; i++)
 			UniversumDisplay[i] = 0;
 		for (int i = 0; i < n; i++)
 			UniversumDisplay[Arr[i]] = 1;
-	}
+	
 }
 
 void Set::printToConsole() const {
@@ -83,9 +80,9 @@ void Set::printToConsole() const {
 		cout << Name << ": [";
 		for (int i = 0; i < n; ++i)
 			if (Name == 'E')
-				cout << hex << i << ";";
+				cout << hex << i << " ";
 			else
-				cout << hex << Arr[i] << ";";
+				cout << hex << Arr[i] << " ";
 
 		cout << "] ";
 
@@ -97,7 +94,7 @@ void Set::printToConsole() const {
 		cout << Name << ": [";
 		for (int i = 0; i < N; ++i)
 			if (UniversumDisplay[i] == 1)
-				cout << hex << i << ";";
+				cout << hex << i << " ";
 
 		cout << "] ";
 
