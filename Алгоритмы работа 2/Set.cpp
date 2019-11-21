@@ -30,7 +30,6 @@ Set Set::operator &= (const Set &B) const {
 			UniversumDisplay[i] = 1;
 		else
 			UniversumDisplay[i] = 0;
-
 	return *this;
 }
 
@@ -44,7 +43,6 @@ Set Set::operator |= (const Set &B) const {
 	for (int i = 0; i < N; i++)
 		if(B.UniversumDisplay[i] == 1)
 		UniversumDisplay[i] = 1;
-	
 	return *this;
 }
 
@@ -72,7 +70,6 @@ void Set::initialize() {
 			UniversumDisplay[i] = 0;
 		for (int i = 0; i < n; i++)
 			UniversumDisplay[Arr[i]] = 1;
-	
 }
 
 void Set::printToConsole() const {
@@ -83,9 +80,7 @@ void Set::printToConsole() const {
 				cout << hex << i << " ";
 			else
 				cout << hex << Arr[i] << " ";
-
 		cout << "] ";
-
 		for (int i = 0; i < N; ++i)
 			cout << UniversumDisplay[i];
 		cout << endl;
@@ -95,9 +90,7 @@ void Set::printToConsole() const {
 		for (int i = 0; i < N; ++i)
 			if (UniversumDisplay[i] == 1)
 				cout << hex << i << " ";
-
 		cout << "] ";
-
 		for (int i = 0; i < N; ++i)
 			cout << UniversumDisplay[i];
 			cout << endl;
