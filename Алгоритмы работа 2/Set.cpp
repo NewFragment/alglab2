@@ -64,7 +64,7 @@ void Set::initialize() {
 	n = rand() % 16;
 		Arr = new int[n];
 		for (int i = 0; i <= n; ++i)
-			Arr[i] = rand() % 16;
+    Arr[i] = rand() % 16;
 			UniversumDisplay = new int[N];
 		for (int i = 0; i < N; i++)
 			UniversumDisplay[i] = 0;
@@ -74,7 +74,7 @@ void Set::initialize() {
 
 void Set::printToConsole() const {
 	if (Name != 'E') {
-		cout << Name << ": [";
+		cout << Name << ": [ ";
 		for (int i = 0; i < n; ++i)
 			if (Name == 'E')
 				cout << hex << i << " ";
